@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: jinsu-team-app-guestbook
+  namespace: argocd
+spec:
+  project: jinsu-team-project
+  source:
+    repoURL: https://github.com/umi0410/argocd-example-apps.git
+    targetRevision: HEAD
+    path: guestbook
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: jinsu-team-ns
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sujin-team-app-guestbook
+  namespace: argocd
+spec:
+  project: sujin-team-project
+  source:
+    repoURL: https://github.com/umi0410/argocd-example-apps.git
+    targetRevision: HEAD
+    path: guestbook
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sujin-team-ns
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true

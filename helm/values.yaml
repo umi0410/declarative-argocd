@@ -1,0 +1,72 @@
+server:
+  config:
+    accounts.jinsu-team-user: apiKey, login
+    accounts.sujin-team-user: apiKey, login
+    
+  rbacConfig:
+    # samples: https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
+    # p, role:readonly, exec, get, */*, allow
+    policy.csv: |
+      p, role:jinsu-team, applications, *, jinsu-team-project/*, allow
+      p, role:jinsu-team, applications, get, sujin-team-project/*, disallow
+      p, role:jinsu-team, certificates, *, *, allow
+      p, role:jinsu-team, clusters, *, *, allow
+      p, role:jinsu-team, repositories, *, *, allow
+      p, role:jinsu-team, projects, *, jinsu-team-project, allow
+      p, role:jinsu-team, projects, get, sujin-team-project, allow
+      p, role:jinsu-team, accounts, *, *, allow
+      p, role:jinsu-team, gpgkeys, *, *, allow
+      p, role:jinsu-team, logs, *, */*, allow
+      p, role:jinsu-team, exec, *, */*, allow
+
+      p, role:sujin-team, applications, *, sujin-team-project/*, allow
+      p, role:sujin-team, applications, get, jinsu-team-project/*, allow
+      p, role:sujin-team, certificates, *, *, allow
+      p, role:sujin-team, clusters, *, *, allow
+      p, role:sujin-team, repositories, *, *, allow
+      p, role:sujin-team, projects, *, sujin-team-project, allow
+      p, role:sujin-team, projects, get, jinsu-team-project, allow
+      p, role:sujin-team, accounts, *, *, allow
+      p, role:sujin-team, gpgkeys, *, *, allow
+      p, role:sujin-team, logs, *, */*, allow
+      p, role:sujin-team, exec, *, */*, allow
+
+      g, jinsu-team-user, role:jinsu-team
+      g, sujin-team-user, role:sujin-team
+  # additionalApplications:
+  # - name: argo-proj-app
+  #   namespace: argocd
+  #   project: argo-proj-app
+  #   source:
+  #     repoURL: https://github.com/umi0410/argocd-example-apps.git
+  #     targetRevision: HEAD
+  #     path: argocd
+  #     directory:
+  #       recurse: true # <--- Here
+  #   destination:
+  #     server: https://kubernetes.default.svc
+  #     namespace: argocd
+  
+  # additionalProjects:
+  # - name: argo-proj-app
+  #   namespace: argocd
+  #   # Finalizer that ensures that project is not deleted until it is not referenced by any application
+  #   finalizers:
+  #     - resources-finalizer.argocd.argoproj.io
+  #   description: ArgoCD Application을 관리하는 프로젝트
+  #   # Allow manifests to deploy from any Git repos
+  #   sourceRepos:
+  #   - '*'
+  #   # Only permit applications to deploy to the guestbook namespace in the same cluster
+  #   destinations:
+  #   - namespace: 'argocd'
+  #     server: https://kubernetes.default.svc
+  #   # Deny all cluster-scoped resources from being created, except for Namespace
+  #   clusterResourceWhitelist:
+  #   - group: '*'
+  #     kind: '*'
+  #   namespaceResourceBlacklist:
+  #   namespaceResourceWhitelist:
+  #   - group: '*'
+  #     kind: '*'
+  #   roles:

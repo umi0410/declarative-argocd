@@ -7,5 +7,5 @@ export ADMIN_PASSWORD={{CURRENT_ADMIN_PASSWORD}}
 
 argocd account update-password --account jinsu-team-user --current-password $ADMIN_PASSWORD --new-password 123123123
 
-argocd account update-password --account jinhee-team-user --current-password $ADMIN_PASSWORD --new-password 123123123
+argocd account update-password --account sujin-team-user --current-password $ADMIN_PASSWORD --new-password 123123123
 ```
