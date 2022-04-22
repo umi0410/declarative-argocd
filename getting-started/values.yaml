@@ -1,0 +1,18 @@
+server:
+  additionalApplications:
+  - name: app-of-app
+    namespace: argocd
+    project: default
+    source:
+      repoURL: https://github.com/umi0410/declarative-argocd.git
+      targetRevision: HEAD
+      path: getting-started/argocd
+    destination:
+      server: https://kubernetes.default.svc
+      namespace: argocd
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true
+      automated:
+        selfHeal: true
+        prune: true
