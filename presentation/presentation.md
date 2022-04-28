@@ -219,12 +219,12 @@ Forwarding from [::1]:8888 -> 80
 * 우두머리 Application을 하나만 잘 선언해놓으면 됨!
 
 ---
-## App of App 패턴
+### App of App 패턴
 
-![width:600px](additionalApplications.png)
-![width:600px](diff3.png)
+![width:500px](additionalApplications.png)
+![width:500px](diff3.png)
 * ArgoCD Helm Chart의 기능을 통해 helm으로 관리될 Application을 선언해요.
-
+* ⚠️ 이건 로컬의 내용을 변경해주셔야해요.
 ---
 ## App of App 패턴
 
