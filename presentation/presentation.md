@@ -16,7 +16,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
 박진수
 
 ---
-# 목차
+## 목차
 
 * 🧑 자기소개
 * 📔 용어사전
@@ -26,7 +26,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
 * 선언적으로 개선: App of App Pattern
 
 ---
-# 🧑 자기소개
+## 🧑 자기소개
 
 ![bg left:20% fit profile.jpeg](profile.jpeg)
 
@@ -37,7 +37,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
 - 클라우드, 컨테이너, Go, Spring Boot, NoSQL, ...
 
 ---
-# 📔 용어사전
+## 📔 용어사전
 
 * **minikube** - 로컬에서 간단히 쿠버 환경 구축
 * **GitOps** - DevOps의 실현 형태 중 하나. 인프라나 애플리케이션 운영 정보에 대한 Single Source of Truth로서 Git Repository를 활용하는 형태
@@ -45,7 +45,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
 * **CRD**(Custom Resource Definition) - K8s의 표준 Resource는 아니지만 개별적으로 정의하여 사용할 수 있는 리소스 kind들
 
 ---
-# 📔 용어사전
+## 📔 용어사전
 
 * **ArgoCD** - GitOps를 위한 CD 서비스
 * **Application** - ArgoCD가 사용하는 CRD 중 하나로 하나의 CD 작업 단위
@@ -54,7 +54,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
 * **선언적**(Declarative) - 과정을 생략하고 Desired State만을 정의하는 것
 
 ---
-# 🎤 발표 주제 설명
+## 🎤 발표 주제 설명
 
 > DevOps, GitOps, CD, ArgoCD, Helm, Declarative, ...
 
@@ -69,7 +69,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
   α. 🤔 RBAC 설정을 통해 계정별 ArgoCD에 대한 권한 관리
 
 ---
-# Requirements
+## Requirements
 
 * `minikube`
   * `brew install minikube && minikube start`
@@ -81,7 +81,7 @@ footer: ' **ArgoCD**를 통해 **GitOps**로
   * 예시 레포(https://github.com/umi0410/declarative-argocd)를 포크뜬 뒤 자신의 레포를 통해 Continuouse Deploy하기 위함
 
 ---
-# minikube
+## minikube
 
 ```console
 $ minikube start
@@ -93,7 +93,7 @@ $ minikube start
 minikube로 로컬에 쿠버네티스 환경을 구축해요.
 
 ---
-# helm
+## helm
 
 ```console
 $ helm repo add argo https://argoproj.github.io/argo-helm
@@ -115,7 +115,7 @@ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.pas
 helm을 통해 ArgoCD를 쿠버네티스 클러스터에 설치해요.
 
 ---
-# 접속하기
+## 접속하기
 
 ```console
 $ kubectl get pod -n argocd
@@ -138,7 +138,7 @@ Forwarding from [::1]:8080 -> 8080
 ```
 
 ---
-# 접속하기
+## 접속하기
 
 ![bg vertical left fit](login.png)
 ![bg vertical left fit](dashboard.png)
@@ -150,7 +150,7 @@ Forwarding from [::1]:8080 -> 8080
   * 설치 환경 마다 다름!
 
 ---
-# CD할 guestbook Application
+## CD할 guestbook Application
 
 저는 Github Username을 `AUSG`로 사용해보겠습니다.
 
@@ -163,7 +163,7 @@ Forwarding from [::1]:8080 -> 8080
 2. fork 뜬 Repository의 **getting-started/argocd/application.yml** 파일에서 **spec.source.repoURL** 값을 자신의 fork 뜬 Repository URL로 올바르게 수정하기
 
 ---
-# CD할 guestbook Application
+## CD할 guestbook Application
 
 ![bg opacity:.2](guestbook-app.png)
 
@@ -174,7 +174,7 @@ kubectl apply -n argocd -f https://raw.githubusercontent.com/umi0410/declarative
 3. Application을 쿠버네티스 환경에 배포
 
 ---
-# guestbook:0.1에 접속해보기
+## guestbook:0.1에 접속해보기
 
 ![width:800px](guestbook01.png)
 
@@ -184,14 +184,14 @@ Forwarding from 127.0.0.1:8888 -> 80
 Forwarding from [::1]:8888 -> 80
 ```
 ---
-# guestbook:0.2로 업그레이드
+## guestbook:0.2로 업그레이드
 
 ![width:800px](diff2.png)
 
 이미지 태그를 0.1 -> 0.2 로 변경 후 푸시!
 
 ---
-# guestbook:0.2로 업그레이드
+## guestbook:0.2로 업그레이드
 
 ![width:800px](guestbook02.png)
 
@@ -201,7 +201,7 @@ Forwarding from [::1]:8888 -> 80
 # 🤔 개선할 점..?
 
 ---
-# 🤔 개선할 점..?
+## 🤔 개선할 점..?
 
 * helm으로 ArgoCD 설치 후 따로 수동으로 Application을 배포해줘야해요.
 * 그 이후에도 Application을 변경할 때마다 직접 kubectl로 변경 사항을 적용해야해요.
@@ -210,7 +210,7 @@ Forwarding from [::1]:8888 -> 80
   * e.g. Live state != Git Repository code
 
 ---
-# App of App 패턴!!!
+## App of App 패턴!!!
 
 ![width:500px](appofapp.png)
 
@@ -219,14 +219,14 @@ Forwarding from [::1]:8888 -> 80
 * 우두머리 Application을 하나만 잘 선언해놓으면 됨!
 
 ---
-# App of App 패턴
+## App of App 패턴
 
 ![width:600px](additionalApplications.png)
 ![width:600px](diff3.png)
 * ArgoCD Helm Chart의 기능을 통해 helm으로 관리될 Application을 선언해요.
 
 ---
-# App of App 패턴
+## App of App 패턴
 
 ![width:800px](appofapp2.png)
 ```console
@@ -237,7 +237,7 @@ $ helm upgrade -n argocd argocd-demo \
 * ArgoCD Helm Chart의 기능을 통해 helm으로 관리될 Application을 선언해요.
 
 ---
-# 얼마나 선언적이란 말인가!
+## 얼마나 선언적이란 말인가!
 
 ```console
 $ minikube delete && minikube start
@@ -255,7 +255,7 @@ App of App 패턴을 통해 선언적으로 CD를 정의함으로써
 클러스터를 다시 구축해도 동일하게 guestbook:0.2로 CD 가능!
 
 ---
-# 💡 +α
+## 💡 +α
 
 - `additionalApplications` 같은 설정 외에 다른 설정도 선언적으로 해보고 싶다!
   - e.g. `RBAC`, `OAuth`
@@ -267,7 +267,7 @@ App of App 패턴을 통해 선언적으로 CD를 정의함으로써
 - [관련 Github Repository](https://github.com/umi0410/declarative-argocd)
 
 ---
-# 마치며
+## 마치며
 
 * 너무 겉핥기라 혹은 너무 슉슉 지나가서 아쉬우신가요?!
   * => 👋 클둥 네트워킹 데이에 만나요~
