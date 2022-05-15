@@ -7,6 +7,7 @@ server:
       repoURL: https://github.com/umi0410/declarative-argocd.git
       targetRevision: HEAD
       path: getting-started/argocd
+      kustomize: {}
     destination:
       server: https://kubernetes.default.svc
       namespace: argocd
