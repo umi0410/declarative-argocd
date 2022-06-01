@@ -1,8 +1,4 @@
 server:
-  config:
-    accounts.jinsu-team-user: apiKey, login
-    accounts.sujin-team-user: apiKey, login
-    
   rbacConfig:
     # samples: https://github.com/argoproj/argo-cd/blob/master/assets/builtin-policy.csv
     # p, role:readonly, exec, get, */*, allow
