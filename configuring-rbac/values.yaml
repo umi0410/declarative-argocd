@@ -5,3 +5,16 @@ server:
     policy.csv: |
       g, khu-dev:khumu-developer, role:readonly
       g, khu-dev:khumu-devops, role:admin
+
+  config:
+    dex.config: |
+      connectors:
+      # Github OAuth를 통해 SSO하려는 경우
+      - type: github
+        id: github # 상관 없을 듯 뭘로 하든
+        name: GitHub # 상관 없을 듯 뭘로 하든
+        config:
+          clientID: <your github oauth app client id>
+          clientSecret: <your github oauth app client secret>
+          orgs:
+          - name: <your github organization name> # e.g. khu-dev
